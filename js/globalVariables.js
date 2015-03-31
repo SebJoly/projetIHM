@@ -1,0 +1,1 @@
+window.eventList = new Array();
