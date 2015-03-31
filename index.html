@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		
 		<title>IHM - Calendar</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="css/style.css">
-		<!--<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">-->
+		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+		<script src="lib/bootstrap/js/bootstrap.min.js"></script> 
 		<meta charset="UTF-8"> 
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<button id="MenuBtn" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+			   		Menu
+		    <span class="caret"></span>
+		  	</button>
+		  	<ul class="dropdown-menu" role="menue" aria-labelledby="dropdownMenu1">
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Timmy</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Timmmy</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Timmmmy</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Timmmmmy</a></li>
+		  	</ul>
 
-		<!--<script type="text/javascript" src="js/GlobalVariables.js"></script>
-		<script type="text/javascript" src="js/GlobalFunctions.js"></script>
-		<script type="text/javascript" src="js/CastFunction.js"></script>
-		<script type="text/javascript" src="js/DebugInterface.js"></script>
-		<script type="text/javascript" src="js/SlideHandler.js"></script>
-		<script type="text/javascript" src="js/ActionManager.js"></script>-->
+		  	<span id="arrow" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		  	<span id="week">Semaine du **/**/** au **/**/**</span>
+		  	<span id="arrow" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+
+		  	<button id="decoBtn" class="btn btn-danger">Déconnexion</button>
+		</nav>
+
+
 
 	</body>
 </html>
