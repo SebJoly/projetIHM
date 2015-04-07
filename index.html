@@ -11,8 +11,9 @@
 		<script type="text/javascript" src="lib/bootstrap-datepicker-master/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script> 
 		<script type="text/javascript" src="lib/bootstrap/js/moment.min.js"></script> 
-		<script type="text/javascript" src="lib/bootstrap/js/fullcalendar.min.js"></script> 
-		<script type="text/javascript" src="js/functions.js"></script> 
+		<script type="text/javascript" src="lib/bootstrap/js/fullcalendar.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/event.js"></script> 
 		<script type="text/javascript" src="js/globalVariables.js"></script>
 		<script type="text/javascript" src="js/calendar.js"></script> 
 		<script type="text/javascript" src="lib/bootstrap/js/jasny-bootstrap.min.js"></script> 
@@ -23,8 +24,8 @@
 			<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
 	  			<a class="navmenu-brand" href="#">Menu</a>
 	  				<ul class="nav navmenu-nav">
-					    <li><a href="http://www.youporn.com">Ajouter un évènement</a></li>
-					    <li><a href="http://www.pornhub.com">Vider les gros évènements</a></li>
+					    <li><a href="#">Ajouter un évènement</a></li>
+					    <li><a href="#">Supprimer un évènement</a></li>
 					    <li><a href="#">Link</a></li>
 					    <li><a href="#">Link</a></li>
 					    <li><a href="#">Link</a></li>
@@ -38,45 +39,82 @@
 				    <span class="icon-bar"></span>
 				    <span class="icon-bar"></span>
 	  			</button>
-	  			<!-- <div id="semaine">
-	  				<span class="glyphicon glyphicon-backward"></span>
-	  				<div>Semaine du ##/##/#### au ##/##/####</div>
-	  				<span class="glyphicon glyphicon-forward"></span>
-	  			</div> -->
 	  			<button id="decoButton" type="button" class="btn btn-danger">Déconnexion</button>
 			</div>
 			<div id="content">
-				<!-- friend list -->
-				<div id="userPanel" class="col-lg-3">
-					<div class="panel panel-info">
-						<div id="changeUserColor" class="panel-heading">
-							<h3 class="panel-title">Srabs</h3>
-							<ul id="userList" class="list-group">
-							  <li class="list-group-item">
-							    <img src="ressources/Images/jimmy.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
-							    <a href="https://scontent-cdg.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/10806315_10205997362230288_8363855981550267086_n.jpg?oh=5dbc3bea1c2c3f701749e65dd5933cb0&oe=559BFE54">Joe La Mouette</a>
-							  </li>
-							  <li class="list-group-item">
-							    <img src="ressources/Images/butters.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
-							    Yvon Ejackuler
-							  </li>
-							  <li class="list-group-item">
-							    <img src="ressources/Images/kenny.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
-							    Jean Kulle
-							  </li>
-							  <li class="list-group-item">
-							    <img src="ressources/Images/timmy.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
-							    Daniel Jackson
-							  </li>
-							  <li class="list-group-item">
-							    <img src="ressources/Images/kyle.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
-							    Alex Crement
-							  </li>
-							</ul>
-							<button type="button" class="btn btn-primary">+</button>
+				<div id="leftSide" class="col-lg-3">
+					<!-- friend list -->
+					<div id="userPanel">
+						<div class="panel panel-info">
+							<div id="changeUserColor" class="panel-heading">
+								<h3 class="panel-title">Srabs</h3>
+								<ul id="userList" class="list-group">
+								  <li class="list-group-item">
+								    <img src="ressources/Images/jimmy.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
+								    <a href="https://scontent-cdg.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/10806315_10205997362230288_8363855981550267086_n.jpg?oh=5dbc3bea1c2c3f701749e65dd5933cb0&oe=559BFE54">Joe La Mouette</a>
+								  </li>
+								  <li class="list-group-item">
+								    <img src="ressources/Images/butters.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
+								    Yvon Ejackuler
+								  </li>
+								  <li class="list-group-item">
+								    <img src="ressources/Images/kenny.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
+								    Jean Kulle
+								  </li>
+								  <li class="list-group-item">
+								    <img src="ressources/Images/timmy.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
+								    Daniel Jackson
+								  </li>
+								  <li class="list-group-item">
+								    <img src="ressources/Images/kyle.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
+								    Alex Crement
+								  </li>
+								</ul>
+								<button type="button" class="btn btn-primary">+</button>
+							</div>
 						</div>
 					</div>
+
+					<div id="dragZone">
+						<div class="panel panel-info">
+							<div id="backgroundDragZone" class="panel-heading">
+								<h3 class="panel-title">Drag Zone</h3>
+								<div id="dragDiv">
+								</div>
+								<button type="button" class="btn btn-primary">Share a file</button>
+							</div>
+						</div>
+					</div>	
+
+					<div id="captionPanel">
+						<div class="panel panel-info">
+							<div id="changeCaptionColor" class="panel-heading">
+								<h3 class="panel-title">Légende</h3>
+								<ul id="captionList" class="list-group">
+								  <li id ="captionBlue" class="list-group-item">
+								    Blue
+								  </li>
+								  <li id ="captionGreen" class="list-group-item">
+								    Green
+								  </li>
+								  <li id ="captionYellow" class="list-group-item">
+								    Yellow
+								  </li>
+								  <li id ="captionRed" class="list-group-item">
+								    Red
+								  </li>
+								  <li id ="captionPurple" class="list-group-item">
+								    Purple
+								  </li>
+								</ul>
+								<button type="button" class="btn btn-primary">+</button>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
+
 				<!-- calendrier -->
 				<div id="eventPanel" class="col-lg-8">
 					<div class="row">

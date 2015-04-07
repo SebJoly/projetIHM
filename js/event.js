@@ -13,3 +13,8 @@ var Event = function(nom, type, place, date, start, end) {
 	}
 	
 }
+
+window.shareEvent = function(event){
+	alert("Go faire la fonction shareEvent dans js/event.js moré ! ");
+	$("#dragDiv").html(event.title);
+}

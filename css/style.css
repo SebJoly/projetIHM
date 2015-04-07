@@ -19,6 +19,8 @@ body,html {
 	margin-top: 55px;
 }
 
+#leftSide {float: left; display: block;}
+
 #userPanel {margin-top: 70px;}
 #changeUserColor {background-color: #eee;}
 #userList {margin-top: 20px;}
@@ -29,23 +31,25 @@ body,html {
 	float: right; margin-right: 90px; margin-top: 20px;
 }
 
-/*#eventPanel table thead tr th {
-	text-align: center; border-width: 1px; border-style: solid; height:50px; background-color: #eee; border-color: #dcdcdc;
-}
-
-#eventPanel table tbody {
-	display:block; height: 300px; overflow-y: auto;
-}*/
-
 #bottom {
 	vertical-align: bottom; 
 }
 
-/*#eventPanel table tbody tr td {
-	text-align: center; border-width: 1px; border-style: solid; height:40px; border-color: #dcdcdc;
+#captionPanel {
+	display: block; width: 100%;
+	float: left; margin-right: 90px; margin-top: 0px;
 }
-*/
-
+#changeCaptionColor {background-color: #eee;}
+#captionList {margin-top: 5px; margin-bottom: 5px;}
+#captionList li {
+	color: black;
+	text-align: center;
+	height: 20px; 
+	line-height: 20px;
+	vertical-align: middle;
+	font-size: 12px;
+	padding:0;
+}
 #center {text-align: center; margin-left: 25px; margin-right: 25px;}
 
 
@@ -84,4 +88,30 @@ body,html {
 textarea.vert { 
 	resize:vertical; 
 	width: 100%;
+}
+
+#captionList li#captionBlue {background-color : #7683FA;}
+#captionList li#captionGreen {background-color : #4FFA63;}
+#captionList li#captionYellow {background-color : #F7FF4D;}
+#captionList li#captionRed {background-color : #FF8080;}
+#captionList li#captionPurple {background-color : #FF50E9;}
+
+
+#calendar {
+		max-width: 1000px;
+		margin: 0 auto;
+}
+
+#center {text-align: center; margin-left: 25px; margin-right: 25px;}
+
+#backgroundDragZone {background: #eee;}
+
+#dragZone {
+	margin-top: 0px; clear: left; float: left; display: block;
+	width: 100%;
+}
+
+#dragDiv {
+	width: 100%; height: 100px; display: block; background: #CECEF6; margin-top: 10px; margin-bottom: 5px;
+	border-style: solid; border-radius: 5px 5px 5px 5px; border-width: 1px; border-color: #BCE8F1;
 }

@@ -5,7 +5,7 @@ $(document).ready(function() {
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,basicWeek,basicDay'
+            right: 'month,agendaWeek,agendaDay'
         },
         defaultDate: new Date(),
         editable: true,
@@ -35,6 +35,17 @@ $(document).ready(function() {
                 $(".calendar").fullCalendar('renderEvent',event);
             }
             isOpened = false;    
+        },
+        eventDragStop: function(event,jsEvent) {
+            var rect = {
+                top:$("#dragDiv").offset().top,
+                bottom:$("#dragDiv").offset().top+$("#dragDiv").height(),
+                left:$("#dragDiv").offset().left,
+                right:$("#dragDiv").offset().left+$("#dragDiv").width()
+            }
+            if( (rect.left <= jsEvent.pageX) & (jsEvent.pageX <= rect.right) & (rect.top<= jsEvent.pageY) & (jsEvent.pageY <= rect.bottom)){
+                window.shareEvent(event);
+            } 
         },
         events: [
                 {
