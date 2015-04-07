@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-$(document).ready(function() {
-	
-	$('#calendar').fullCalendar({
-		header: {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'month,basicWeek,basicDay'
-		},
-		defaultDate: '2015-04-12',
-		editable: true,
-		eventLimit: true, // allow "more" link when too many events
-	});
-	
-});
-=======
-
-
 window.eventManagement = {
     add: function() {
         var eventObject = {
@@ -38,4 +20,3 @@ window.eventManagement = {
         $(".calendar").find('.content > .popup_container').attr("style","background-color:"+color+"!important;");
     }
 }
->>>>>>> d486a88db802ef2ff3d41c4894ad372b9b47f5a6

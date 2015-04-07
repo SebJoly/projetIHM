@@ -2,17 +2,20 @@
 <html>
 	<head>
 		<title>IHM - Calendar</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="lib/bootstrap/css/fullcalendar.min.css">
-		<link rel="stylesheet" href="lib/bootstrap/css/fullcalendar.print.min.css" media="print">
+		<link rel="stylesheet" href="lib/bootstrap/css/fullcalendar.print.css" media="print">
 		<link rel="stylesheet" href="lib/bootstrap/css/jasny-bootstrap.min.css">
-		<script src="lib/bootstrap/js/bootstrap.min.js"></script> 
-		<script src="lib/bootstrap/js/moment.min.js"></script> 
-		<script src="lib/bootstrap/js/fullcalendar.min.js"></script> 
-		<script src="lib/bootstrap/js/calendar.js"></script> 
-		<script src="lib/bootstrap/js/jasny-bootstrap.min.js"></script> 
+		<script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrap-datepicker-master/js/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script> 
+		<script type="text/javascript" src="lib/bootstrap/js/moment.min.js"></script> 
+		<script type="text/javascript" src="lib/bootstrap/js/fullcalendar.min.js"></script> 
+		<script type="text/javascript" src="js/functions.js"></script> 
+		<script type="text/javascript" src="js/globalVariables.js"></script>
+		<script type="text/javascript" src="js/calendar.js"></script> 
+		<script type="text/javascript" src="lib/bootstrap/js/jasny-bootstrap.min.js"></script> 
 		<meta charset="UTF-8"> 
 	</head>
 	<body>
@@ -76,270 +79,42 @@
 				</div>
 				<!-- calendrier -->
 				<div id="eventPanel" class="col-lg-8">
-					<!-- <div class="row">
-						<table>
-							<thead>
-								<tr>
-									<th class="col-lg-1">Heure</th>
-									<th class="col-lg-1">Lundi</th>
-									<th class="col-lg-1">Mardi</th>
-									<th class="col-lg-1">Mercredi</th>
-									<th class="col-lg-1">Jeudi</th>
-									<th class="col-lg-1">Vendredi</th>
-									<th class="col-lg-1">Samedi</th>
-									<th class="col-lg-1">Dimanche</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td id="bottom" class="col-lg-1">1:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">2:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">3:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">4:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">5:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">6:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">7:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">8:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">9:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">10:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">11:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">12:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">13:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">14:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">15:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">16:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">17:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">18:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">19:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">20:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">21:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">22:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">23:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-								<tr>
-									<td id="bottom" class="col-lg-1">00:00</td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-									<td class="col-lg-1"></td>
-								</tr>
-							</tbody>
-						</table>
-
-					</div> -->
 					<div class="row">
-						<div class="span9">
-						<div id='calendar'></div>
+						<div class="span9"></div>
+						<div class='calendar'></div>
 					</div>
+					<div class="popup-head hide">
+						<span id="popover-title">New event</span><button class="btn btn-default pull-right btn-color"/>
+					</div>
+					<div class="popup-content hide">
+						<div class="popup-container">
+						  	<!--<div class="controls">
+					            <div class="input-group">
+					                <input id="date-picker-2" type="text" class="date-picker form-control" />
+					                <label for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span>
+
+					                </label>
+					            </div>
+					        </div>-->
+						  	<div class="popover-data">
+						  		<span id="popover-start"> Start date </span>
+						  		<span id="popover-start-time" class="pull-right"> time </span>
+						  	</div>
+						  	<div class="popover-data">
+						  		<span id="popover-end"> End date </span>
+						  		<span id="popover-end-time" class="pull-right"> time </span>
+						  	</div>
+						    <div class="popover-data">
+						    	<textarea class="vert" id="popover-description" placeholder="Description"></textarea>
+						    </div>
+						    <ul class="list-group file-list">
+						    	<li class="list-group-item active"><span class="badge">0</span>Files</li>
+						   	</ul>
+					   	<div>
+				  	</div>
 				</div>
 			</div>
+			
 			</body>
+
 </html>
