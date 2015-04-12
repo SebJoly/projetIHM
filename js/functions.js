@@ -15,6 +15,7 @@ $(document).ready(function() {
         eventClick: function(calEvent, jsEvent, view) {
             window.currentEvent = calEvent;
             console.log(calEvent);
+            $("#btnColor").css("background-color", calEvent.color);
             $("#popover-title").html(calEvent.title);
             $("#popover-start").html(formatDate(calEvent.start._d,"dddd d MMM yyyy",true));
             $("#popover-start-time").html(formatDate(calEvent.start._d,"hh:mm TT",true));
