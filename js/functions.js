@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
     var isOpened = false;
-
+    window.isImporting = false;
     $('.calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -14,11 +14,12 @@ $(document).ready(function() {
         eventLimit: true, // allow "more" link when too many events
         eventClick: function(calEvent, jsEvent, view) {
             window.currentEvent = calEvent;
+            console.log(calEvent);
             $("#popover-title").html(calEvent.title);
-            $("#popover-start").html(formatDate(calEvent.start._d,"dddd d MMM yyyy"));
-            $("#popover-start-time").html(formatDate(calEvent.start._d,"h:mm TT"));
-            $("#popover-end").html(formatDate(calEvent.end._d,"dddd d MMM yyyy"));
-            $("#popover-end-time").html(formatDate(calEvent.end._d,"h:mm TT"));
+            $("#popover-start").html(formatDate(calEvent.start._d,"dddd d MMM yyyy",true));
+            $("#popover-start-time").html(formatDate(calEvent.start._d,"hh:mm TT",true));
+            $("#popover-end").html(formatDate(calEvent.end._d,"dddd d MMM yyyy",true));
+            $("#popover-end-time").html(formatDate(calEvent.end._d,"hh:mm TT",true));
             isOpened = true;
             // alert('Coucou');
         },
@@ -93,7 +94,7 @@ $(document).ready(function() {
                 //$('#eventForm').formValidation('revalidateField', 'date');
             });
         $('.popover').find('#popover-start-time').timepicker({
-            defaultTime:new Date(window.currentEvent.start)
+                defaultTime:formatDate(new Date(window.currentEvent.start),"h:mm TT",true)
             //$(".")
         }).on('changeTime.timepicker', function(e) {
                 $(".popover").find("#popover-start-time").html(e.time.value);
@@ -119,7 +120,7 @@ $(document).ready(function() {
                 $('#calendar').fullCalendar('updateEvent', window.currentEvent);
             });
             $('.popover').find('#popover-end-time').timepicker({
-                defaultTime:new Date(window.currentEvent.end)
+                defaultTime:formatDate(new Date(window.currentEvent.end),"h:mm TT",true)
             }).on('changeTime.timepicker', function(e) {
                 $(".popover").find("#popover-end-time").html(e.time.value);
                 window.currentEvent.end._d.setHours(e.time.hours);
@@ -129,25 +130,47 @@ $(document).ready(function() {
 
     })
     $('body').on('click', function (e) {
-        $('[class="fc-event-container"]').each(function () {
-            //the 'is' for buttons that trigger popups
-            //the 'has' for icons within a button that triggers a popup
-            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                $(this).popover('hide');
-            }
-        });
+        if(!window.isImporting) {
+            $('[class="fc-event-container"]').each(function () {
+                //the 'is' for buttons that trigger popups
+                //the 'has' for icons within a button that triggers a popup
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
+        }
     });
 
-    /*$(".date-picker").datepicker();
-
-    $(".date-picker").on("change", function () {
-        var id = $(this).attr("id");
-        var val = $("label[for='" + id + "']").text();
-        console.log(val + " changed");
-    });*/
+    $("#inputfile").on("change",function(){
+        window.isImporting = false;
+        var str = $(this).val();
+        var n = str.lastIndexOf('\\');
+        var result = str.substring(n + 1);
+        $('.popover').find("#popover-files").append("<li class='list-group-item'><span class='badge' onClick='window.deleteFile($(this))'>x</span>"+result+"</li>");
+    })
 
     
 });
+
+/*    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+});*/
+
+window.importFile = function() {
+    window.isImporting = true;
+    $('#inputfile').click();
+        event.stopPropagation();    
+
+}
+
+window.deleteFile = function(e){
+    e.parent().remove();
+    event.stopPropagation();    
+}
+
+
 
 function formatDate(date, format, utc) {
     var MMMM = ["\x00", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

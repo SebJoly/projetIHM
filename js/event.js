@@ -14,7 +14,7 @@ var Event = function(nom, type, place, date, start, end) {
 	
 }
 
-window.shareEvent = function(event){
+window.shareEvent = function(){
 	alert("Go faire la fonction shareEvent dans js/event.js moré ! ");
-	$("#dragDiv").html(event.title);
+	$("#dragDiv").html(window.currentEvent.title);
 }

@@ -17,7 +17,7 @@ window.eventList =
                 }];
 
 window.currentEvent;
-
+window.isImporting;
 window.colorArray = {
 	"red":{
 		"light":"#FF8080",

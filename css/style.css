@@ -87,7 +87,11 @@ body,html {
 
 .popover { z-index : 900 !important; }
 .ui-datepicker-div { z-index: 999 !important; }
-
+.btn-share {
+  background: url('../ressources/Images/share.png') left center no-repeat !important;
+  background-size: 25px 15px !important;
+  margin-left: 5px;
+}
 textarea.vert { 
 	resize:vertical; 
 	width: 100%;
