@@ -85,6 +85,9 @@ body,html {
 	border-radius: 0px 0px 6px 6px; 
 }
 
+.popover { z-index : 900 !important; }
+.ui-datepicker-div { z-index: 999 !important; }
+
 textarea.vert { 
 	resize:vertical; 
 	width: 100%;

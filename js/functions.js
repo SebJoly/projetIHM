@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
     var isOpened = false;
+
     $('.calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -8,14 +9,16 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         defaultDate: new Date(),
+        allDayDefault: false,
         editable: true,
         eventLimit: true, // allow "more" link when too many events
         eventClick: function(calEvent, jsEvent, view) {
+            window.currentEvent = calEvent;
             $("#popover-title").html(calEvent.title);
             $("#popover-start").html(formatDate(calEvent.start._d,"dddd d MMM yyyy"));
-            $("#popover-start-time").html(formatDate(calEvent.start._d,"h:mmtt"));
+            $("#popover-start-time").html(formatDate(calEvent.start._d,"h:mm TT"));
             $("#popover-end").html(formatDate(calEvent.end._d,"dddd d MMM yyyy"));
-            $("#popover-end-time").html(formatDate(calEvent.end._d,"h:mmtt"));
+            $("#popover-end-time").html(formatDate(calEvent.end._d,"h:mm TT"));
             isOpened = true;
             // alert('Coucou');
         },
@@ -28,10 +31,13 @@ $(document).ready(function() {
                 var end = new Date(date._d);  
                 end.setHours(end.getHours() + 1);
                 var event = {
+                        id : window.eventList.length,
                         title: 'New event',
                         start: start, 
-                        end: end
+                        end: end,
+                        editable:true
                     };
+                window.eventList.push(event);
                 $(".calendar").fullCalendar('renderEvent',event);
             }
             isOpened = false;    
@@ -47,33 +53,81 @@ $(document).ready(function() {
                 window.shareEvent(event);
             } 
         },
-        events: [
-                {
-                    title: 'All Day Event',
-                    start: '2015-04-02T12:00:00', 
-                    end: '2015-04-02T14:00:00'
-                },
-                {
-                    title: 'Test',
-                    start: '2015-04-04T12:00:00', 
-                    end: '2015-04-04T16:00:00'
-                }]
-
+        events: window.eventList
         });
 
     $('.calendar').popover({
         html : true,
         selector: '[class="fc-event-container"]',
         title: function() {
+            
           return $("#eventPanel").find('.popup-head').html();
         },
         content: function() {
           return $("#eventPanel").find('.popup-content').html();
         },
         container: 'body',
-        placement: 'right'
+        placement: 'auto right'
     });
+    $('.popover').on("hidden",function(){
+        alert("coucu");
+    })
+    $('.calendar').on('shown.bs.popover', function () {
+        $('.popover').find('#popover-start').datepicker({
+            format: 'mm/dd/yyyy',
+            orientation:'auto',
+            container:'body',
+            defaultViewDate:{
+                day:new Date(window.currentEvent.start).getDay(),
+                month:new Date(window.currentEvent.start).getMonth(),
+                year:new Date(window.currentEvent.start).getFullYear()
+            }})      
+            .on('changeDate', function(e) {
+                $(".popover").find("#popover-start").html(formatDate(new Date(e.date),"dddd d MMM yyyy"));
+                var newDate = new Date(e.date);
+                newDate.setHours(new Date(window.currentEvent.start).getHours());
+                newDate.setMinutes(new Date(window.currentEvent.start).getMinutes());
+                window.currentEvent.start._d = newDate;
+                $('#calendar').fullCalendar('updateEvent', window.currentEvent);
+                // Revalidate the date field
+                //$('#eventForm').formValidation('revalidateField', 'date');
+            });
+        $('.popover').find('#popover-start-time').timepicker({
+            defaultTime:new Date(window.currentEvent.start)
+            //$(".")
+        }).on('changeTime.timepicker', function(e) {
+                $(".popover").find("#popover-start-time").html(e.time.value);
+                window.currentEvent.start._d.setHours(e.time.hours);
+                window.currentEvent.start._d.setMinutes(e.time.minutes);
+                $('#calendar').fullCalendar('updateEvent', window.currentEvent);
+            });
+        $('.popover').find('#popover-end').datepicker({
+            format: 'mm/dd/yyyy',
+            orientation:'auto',
+            container:'body',
+            defaultViewDate:{
+                day:new Date(window.currentEvent.end).getDay(),
+                month:new Date(window.currentEvent.end).getMonth(),
+                year:new Date(window.currentEvent.end).getFullYear()
+            }})           
+            .on('changeDate', function(e) {
+                $(".popover").find("#popover-end").html(formatDate(new Date(e.date),"dddd d MMM yyyy"));
+                var newDate = new Date(e.date);
+                newDate.setHours(new Date(window.currentEvent.end).getHours());
+                newDate.setMinutes(new Date(window.currentEvent.end).getMinutes());
+                window.currentEvent.end._d = newDate;
+                $('#calendar').fullCalendar('updateEvent', window.currentEvent);
+            });
+            $('.popover').find('#popover-end-time').timepicker({
+                defaultTime:new Date(window.currentEvent.end)
+            }).on('changeTime.timepicker', function(e) {
+                $(".popover").find("#popover-end-time").html(e.time.value);
+                window.currentEvent.end._d.setHours(e.time.hours);
+                window.currentEvent.end._d.setMinutes(e.time.minutes);
+                $('#calendar').fullCalendar('updateEvent', window.currentEvent);
+            });
 
+    })
     $('body').on('click', function (e) {
         $('[class="fc-event-container"]').each(function () {
             //the 'is' for buttons that trigger popups
@@ -84,13 +138,15 @@ $(document).ready(function() {
         });
     });
 
-    $(".date-picker").datepicker();
+    /*$(".date-picker").datepicker();
 
     $(".date-picker").on("change", function () {
         var id = $(this).attr("id");
         var val = $("label[for='" + id + "']").text();
         console.log(val + " changed");
-    });
+    });*/
+
+    
 });
 
 function formatDate(date, format, utc) {
@@ -172,7 +228,6 @@ function formatDate(date, format, utc) {
     format = format.replace(new RegExp(MMM[0], "g"), MMM[M]);
 
     format = format.replace(/\\(.)/g, "$1");
-
     return format;
 };
 

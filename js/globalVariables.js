@@ -1,4 +1,22 @@
-window.eventList = new Array();
+window.eventList = 
+                [
+                {
+                    id : 0,
+                    title: 'IHM Presentation',
+                    start: '2015-04-14T10:00:00', 
+                    end: '2015-04-14T12:00:00',
+                    editable:true
+
+                },
+                {
+                    id : 1,
+                    title: 'CAR',
+                    start: '2015-04-14T14:00:00', 
+                    end: '2015-04-14T19:00:00',
+                    editable:true
+                }];
+
+window.currentEvent;
 
 window.colorArray = {
 	"red":{
