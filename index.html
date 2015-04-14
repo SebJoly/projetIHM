@@ -31,12 +31,13 @@
 			<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
 	  			<a class="navmenu-brand" href="#">Menu</a>
 	  				<ul class="nav navmenu-nav">
-					    <li><a href="#">Ajouter un évènement</a></li>
-					    <li><a href="#">Supprimer un évènement</a></li>
-					    <li><a href="#">Link</a></li>
-					    <li><a href="#">Link</a></li>
-					    <li><a href="#">Link</a></li>
-					    <li><a href="#">Link</a></li>
+					    <li><a href="#">Add an event - <span class="badge">ctrl + a</span> </a></li>
+					    <li><a href="#">Delete an event - <span class="badge">ctrl + s</span></a></li>
+					    <li><a href="#">Import calendar file - <span class="badge">ctrl + i</span></a></li>
+					    <li><a href="#">Add a friend - <span class="badge">ctrl + f</span></a></li>
+					    <li><a href="#">Delete a friend - <span class="badge">ctrl + d</span></a></li>
+					    <li><a href="#">Undo - <span class="badge">ctrl + z</span></a></li>
+					    <li><a href="#">Redo - <span class="badge">ctrl + y</span></a></li>
 	  				</ul>
 			</nav>
 			<!-- navbar au top -->
@@ -54,7 +55,7 @@
 					<div id="userPanel">
 						<div class="panel panel-info">
 							<div id="changeUserColor" class="panel-heading">
-								<h3 class="panel-title">Srabs</h3>
+								<h3 class="panel-title">Friends</h3>
 								<ul id="userList" class="list-group">
 								  <li class="list-group-item">
 								    <img src="ressources/Images/jimmy.jpg" alt="Profile image" class="img-rounded" style="width: 25px; height: 25px;">
@@ -131,6 +132,7 @@
 					<div class="popup-head hide">
 						<span id="popover-title">New event</span>
 						<div class="pull-right">
+							<span class="glyphicon glyphicon-ban-circle" style="cursor: pointer;"></span>
 							<button class="btn btn-default btn-color" id="btnColor"/>
 							<button class="btn btn-default btn-share" onClick="window.shareEvent()"/>
 						</div>
@@ -157,7 +159,7 @@
 						    	<textarea class="vert" id="popover-description" placeholder="Description"></textarea>
 						    </div>
 						    <ul class="list-group file-list" id="popover-files">
-						    	<li class="list-group-item active"><span class="badge">0</span><span class="badge" onClick="window.importFile()">+</span>Files</li>
+						    	<li class="list-group-item active"><span class="badge">0</span><span class="badge" onClick="window.importFile()" style="cursor: pointer;">+</span>Files</li>
 						   	</ul>
 					   	<div>
 				  	</div>
